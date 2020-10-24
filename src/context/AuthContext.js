@@ -29,16 +29,18 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  // reset-password, which will return apromise
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
 
-    return () => {
-      console.log('cleaned');
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   const value = {
@@ -46,6 +48,7 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
+    resetPassword,
   };
 
   return (
