@@ -19,9 +19,14 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
-  // signin an user, which will return a promise
+  // login an user, which will return a promise
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
+  }
+
+  //  logout user, which will return a promise
+  function logout() {
+    return auth.signOut();
   }
 
   useEffect(() => {
@@ -40,6 +45,7 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
+    logout,
   };
 
   return (
