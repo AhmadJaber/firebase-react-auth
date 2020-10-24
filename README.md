@@ -13,3 +13,5 @@ Authentication is crucial for nearly every application. It can also be incredibl
 - This will have all of our local environment variables, which we don't want them pushed to our server
 - Because i don't want them inside my version control. Also
 - When setting up environment-variables with react, it always starts with `REACT_APP_VARIABLE_NAME`
+
+**`AuthContext` file contains the `AuthContext` & `AuthProvider` which is also very modular, so if do not use firebase i can use it for my own custom server.**

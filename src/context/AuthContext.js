@@ -19,18 +19,27 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
+  // signin an user, which will return a promise
+  function login(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => {
+      console.log('cleaned');
+      unsubscribe();
+    };
   }, []);
 
   const value = {
     currentUser,
     signup,
+    login,
   };
 
   return (
